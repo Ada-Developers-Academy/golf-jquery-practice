@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :clubs
+  post "/player_clubs/:club_id", to: "player_clubs#create", as: :player_club
   root "clubs#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
