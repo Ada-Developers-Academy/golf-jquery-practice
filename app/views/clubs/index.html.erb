@@ -1,11 +1,11 @@
 <% @clubs.each do |club| %>
-  <div class='club row'>
+  <div class='club row <%= "chosen" if current_user.clubs.include?(club) %>'>
     <h4 class='col-lg-2'><%= club.name %> <small><%= club.category %></small></h4>
     <p class='col-lg-9'>
       <%= Faker::Lorem.paragraph %>
     </p>
     <div class=' col-lg-1 actions'>
-      <%= button_to "Choose", "/", class: "choose btn btn-success"  %>
+      <%= button_to "Choose", player_club_path(club.id), class: "choose btn btn-success"  %>
     </div>
   </div>
 <% end %>
