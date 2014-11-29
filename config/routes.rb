@@ -1,4 +1,6 @@
+require 'resque/server'
 Rails.application.routes.draw do
+  mount Resque::Server, :at => "/resque"
   resources :clubs
   post "/player_clubs/:club_id", to: "player_clubs#create", as: :player_club
   root "clubs#index"
