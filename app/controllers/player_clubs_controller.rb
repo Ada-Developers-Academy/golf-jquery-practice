@@ -1,9 +1,11 @@
 class PlayerClubsController < ApplicationController
   def create
     @club = Club.find(params[:club_id])
-    PlayerClub.create(club_id: @club.id, player_id: current_user.id)
-    # That line ^ does the same as:
-    # current_user.clubs << @club
-    redirect_to root_path
+    if PlayerClub.create(club_id: @club.id, player_id: current_user.id)
+      ClubMailer.join_us(@club.id).deliver
+      redirect_to root_path
+    else
+      #
+    end
   end
 end

@@ -1,13 +1,12 @@
 class ClubMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "b@example.com"
 
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.club_mailer.join_us.subject
-  #
-  def join_us(id)
-    @club = Club.find(id)
-    mail to: "bookis.smuin@gmail.com", subject: "#{@club.name} wants you to dance"
+  def join_us(club_id)
+    # @user = User.find(user_id)
+    @club = Club.find(club_id)
+    mail(
+      to: "bookis.smuin@gmail.com",
+      subject: "Thanks for joining #{@club.name}!"
+    )
   end
 end
