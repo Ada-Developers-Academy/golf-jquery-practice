@@ -7,3 +7,14 @@ Rails.application.load_tasks
 
 require "resque/tasks"
 task "resque:setup" => :environment
+
+namespace :api do
+  task :test => [:environment] do
+    puts "Creating file..."
+    File.open("clubs.txt", "w") do |file|
+      Club.all.each do |club|
+        file << club.name + "\n"
+      end
+    end
+  end
+end
